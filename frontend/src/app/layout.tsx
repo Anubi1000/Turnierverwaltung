@@ -5,7 +5,7 @@ import "./globals.css";
 const roboto = Roboto_Flex({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-    title: "Turnierplaner"
+    title: "Turnierverwaltung"
 };
 
 export default function RootLayout({
