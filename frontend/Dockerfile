@@ -19,7 +19,7 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
-COPY --from=build --chown=node:node /app/public ./public
+#COPY --from=build --chown=node:node /app/public ./public
 
 RUN mkdir .next
 RUN chown node:node .next
