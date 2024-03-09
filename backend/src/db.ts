@@ -16,7 +16,7 @@ export async function setupDB(logger: Logger) {
         await client.connect()
         logger.info("Connected to MongoDB");
 
-        return client.db("vfs");
+        return client.db("turnierverwaltung");
     } catch (err) {
         logger.error(err, "Failed to connect to MongoDB");
         throw err
