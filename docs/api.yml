@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: Turnierverwaltung
+  version: 0.1.0
+paths:
+  /ping:
+    get:
+      description: Ping Server
+      responses:
+        200:
+          description: Pong
+  /tournaments/list:
+    get:
+      description: List tournaments
+      tags:
+        - "Tournaments"
+      responses:
+        200:
+          description: ""
+          content:
+            "application/json":
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tournament"
+                    
+  /tournaments/{id}:
+    get: 
+      description: Get Tournament
+      tags: 
+        - "Tournaments"
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer 
+          required: true 
+      responses:
+        200:
+          description: ""
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/TournamentDetail"
+
+tags:
+  - name: Tournaments
+
+servers:
+  - url: http://localhost:8080
+
+components:
+  schemas:
+    Tournament:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    TournamentDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        participants:
+          type: array
+          items:
+            $ref: "#/components/schemas/Participant"
+    Participant:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        club:
+          type: string
