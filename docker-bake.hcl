@@ -9,13 +9,13 @@ variable "TAG" {
 target "frontend" {
     context = "./frontend"
     tags = [
-        "anubi1000/turnierplaner/frontend:${TAG}"
+        "anubi1000/turnierverwaltung/frontend:${TAG}"
     ]
 }
 
 target "backend" {
     context = "./backend"
     tags = [
-        "anubi1000/turnierplaner/backend:${TAG}"
+        "anubi1000/turnierverwaltung/backend:${TAG}"
     ]
 }
