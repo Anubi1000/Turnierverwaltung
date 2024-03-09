@@ -59,9 +59,10 @@ async function main() {
 
     app.get("/tournaments/:tournamentId", async (req, res) => {
         const tournament_string = req.params.tournamentId
-        const result = db.collection(tournament_prefix+ tournament_string)
+        const cursor = db.collection(tournament_prefix+ tournament_string).find()
+        const result = await cursor.toArray()
         if (!result) {
-            res.status(404).send("No tournaments")
+            res.status(200).json({})
         } else {
             res.status(200).send(result)
         }
