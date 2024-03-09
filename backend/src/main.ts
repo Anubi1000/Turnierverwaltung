@@ -22,7 +22,7 @@ async function main() {
 
     app.get("/ping", (req, res) => {
         logger.debug(`Received ping from ${req.hostname}`)
-        res.send("pong")
+        res.send("Pong")
     })
 
     app.post("/auth", (req, res) => {
@@ -42,6 +42,17 @@ async function main() {
 
         logger.debug("Auth request contained invalid password")
         res.status(401).json({errorMessage: "Password is invalid"})
+    })
+
+    app.get("/tournaments", async (req, res) => {
+        const cursor = db.collection("tournaments").find().project({name: 1})
+        const values = await cursor.toArray()
+        cursor.close()
+        if (values.length == 0) {
+            res.status(404).send("No tournaments")
+        } else {
+            res.status(200).send(values)
+        }
     })
 
     const server = app.listen(8080, () => {
