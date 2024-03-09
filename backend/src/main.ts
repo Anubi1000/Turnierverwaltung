@@ -4,6 +4,8 @@ import {closeDb, setupDB} from "./db";
 
 let env = process.env.NODE_ENV || 'development';
 
+let tournament_prefix = "tour_"
+
 let level;
 if (env == "production") {
     level = "info"
@@ -54,6 +56,17 @@ async function main() {
             res.status(200).send(values)
         }
     })
+
+    app.get("/tournaments/:tournamentId", async (req, res) => {
+        const tournament_string = req.params.tournamentId
+        const result = db.collection(tournament_prefix+ tournament_string)
+        if (!result) {
+            res.status(404).send("No tournaments")
+        } else {
+            res.status(200).send(result)
+        }
+    })
+
 
     const server = app.listen(8080, () => {
         logger.info("Started")
