@@ -11,7 +11,7 @@ paths:
           description: Pong
   /tournaments:
     get:
-      description: List tournaments
+      description: List all tournaments
       tags:
         - "Tournaments"
       responses:
@@ -23,21 +23,26 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/TournamentWithId"
-    post:
-      description: Add new tournament
+    put:
+      description: Add a new tournament
       tags: 
         - "Tournaments"
+      requestBody:
+        description: "Properties of the tournament"
+        required: true
+        content: 
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/Tournament"
       responses: 
-        200:
-          description: ""
-          content:
-            "application/json":
-              schema: 
-                $ref: "#/components/schemas/Tournament"
+        201:
+          description: "The tournament has been created"
+        400:
+          description: "The request contained invalid content"
 
   /tournaments/{tournamentId}:
     get: 
-      description: Get Tournament
+      description: Get a Tournament
       tags: 
         - "Tournaments"
       parameters:
@@ -54,7 +59,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/TournamentDetail"
     patch:
-      description: Update Tournament
+      description: Update a Tournament
       tags: 
         - "Tournaments"
       parameters:
@@ -63,13 +68,18 @@ paths:
           schema:
             type: integer 
           required: true 
+      requestBody:
+        description: "Properties of the tournament that should be updated"
+        required: true
+        content: 
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/Tournament"
       responses: 
         200:
-          description: ""
-          content: 
-            "application/json":
-              schema: 
-                $ref: "#/components/schemas/Tournament"
+          description: "The tournament has been updated"
+        400:
+          description: "The request contained invalid content"
 
 tags:
   - name: Tournaments
