@@ -9,7 +9,7 @@ paths:
       responses:
         200:
           description: Pong
-  /tournaments/list:
+  /tournaments:
     get:
       description: List tournaments
       tags:
@@ -22,16 +22,27 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Tournament"
-                    
-  /tournaments/{id}:
+                  $ref: "#/components/schemas/TournamentWithId"
+    post:
+      description: Add new tournament
+      tags: 
+        - "Tournaments"
+      responses: 
+        200:
+          description: ""
+          content:
+            "application/json":
+              schema: 
+                $ref: "#/components/schemas/Tournament"
+
+  /tournaments/{tournamentId}:
     get: 
       description: Get Tournament
       tags: 
         - "Tournaments"
       parameters:
         - in: path
-          name: id
+          name: tournamentId
           schema:
             type: integer 
           required: true 
@@ -42,26 +53,48 @@ paths:
             "application/json":
               schema:
                 $ref: "#/components/schemas/TournamentDetail"
+    patch:
+      description: Update Tournament
+      tags: 
+        - "Tournaments"
+      parameters:
+        - in: path
+          name: tournamentId
+          schema:
+            type: integer 
+          required: true 
+      responses: 
+        200:
+          description: ""
+          content: 
+            "application/json":
+              schema: 
+                $ref: "#/components/schemas/Tournament"
 
 tags:
   - name: Tournaments
 
 servers:
-  - url: http://localhost:8080
+  - url: "http://localhost:8080"
 
 components:
   schemas:
     Tournament:
       type: object
       properties:
-        id:
-          type: integer
         name:
           type: string
+    TournamentWithId:
+      allOf: 
+        - $ref: "#/components/schemas/Tournament"
+        - type: object
+          properties:
+            tournamentId:
+              type: integer
     TournamentDetail:
       type: object
       properties:
-        id:
+        tournamentId:
           type: integer
         name:
           type: string
@@ -72,7 +105,7 @@ components:
     Participant:
       type: object
       properties:
-        id:
+        participantId:
           type: integer
         name:
           type: string
