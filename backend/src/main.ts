@@ -48,23 +48,20 @@ async function main() {
 
     app.get("/tournaments", async (req, res) => {
         const cursor = db.collection("tournaments").find().project({name: 1})
-        const values = await cursor.toArray()
-        cursor.close()
-        if (values.length == 0) {
-            res.status(404).send("No tournaments")
-        } else {
-            res.status(200).send(values)
-        }
+        const result = await cursor.toArray()
+        await cursor.close()
+        res.status(200).send(result)
     })
 
     app.get("/tournaments/:tournamentId", async (req, res) => {
         const tournament_string = req.params.tournamentId
         const cursor = db.collection(tournament_prefix+ tournament_string).find()
         const result = await cursor.toArray()
-        if (!result) {
-            res.status(200).json({})
+        await cursor.close()
+        if (result.length == 0) {
+            res.status(404).send("No tournament with given id")
         } else {
-            res.status(200).send(result)
+            res.status(200).send(result[0])
         }
     })
 
