@@ -1,5 +1,5 @@
-import Clock from "@/app/scoreboard/clock";
-import {ScoreboardTable} from "@/app/scoreboard/scoreboardTable";
+import Clock from "@/app/scoreboard/Clock";
+import {ScoreboardTable} from "@/app/scoreboard/ScoreboardTable";
 
 export default function Page() {
     return (

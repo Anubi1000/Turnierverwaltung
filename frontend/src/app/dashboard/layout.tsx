@@ -1,5 +1,5 @@
 import React from "react";
-import {SessionProviderComponent} from "@/app/dashboard/sessionProvider";
+import {SessionProviderComponent} from "@/app/dashboard/SessionProvider";
 
 export default async function Layout({
     children
