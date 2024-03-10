@@ -1,6 +1,8 @@
 import express from "express"
 import pino from "pino"
 import {closeDb, setupDB} from "./db";
+import {Tournament, TournamentInfo, TournamentValue} from "../../api/types"
+import { Collection } from "mongodb";
 
 let env = process.env.NODE_ENV || 'development';
 
@@ -46,23 +48,46 @@ async function main() {
         res.status(401).json({errorMessage: "Password is invalid"})
     })
 
-    app.get("/tournaments", async (req, res) => {
-        const cursor = db.collection("tournaments").find().project({name: 1})
-        const result = await cursor.toArray()
+    app.get("/tournaments", async (req, res) => { 
+        var result: TournamentInfo[] = []
+        db.
+        db.getCollectionNames().forEach((col_name) => {
+            var info_doc = db[col_name].find({tpye: "info"})
+            const info: TournamentInfo = {
+            id: "da",
+            name: "ad"
+            }
+        result.push(info)    
+        } 
+       
+         
+        
         await cursor.close()
         res.status(200).send(result)
     })
 
     app.get("/tournaments/:tournamentId", async (req, res) => {
+        
         const tournament_string = req.params.tournamentId
-        const cursor = db.collection(tournament_prefix+ tournament_string).find()
-        const result = await cursor.toArray()
-        await cursor.close()
-        if (result.length == 0) {
+        const info_query = {type: "info"}
+        const collection = await db.collection(tournament_prefix+ tournament_string)
+        const info_doc = await collection.findOne(info_query)
+        var tournament_name, tournament_values
+        if (info_doc == null) {
             res.status(404).send("No tournament with given id")
+            return
         } else {
-            res.status(200).send(result[0])
+            tournament_name = info_doc.name
+            tournament_values = info_doc.values
         }
+
+        const result_tournament: Tournament = {
+            name: tournament_name,
+            values: tournament_values
+            
+        }
+        res.status(200).send(result_tournament)
+
     })
 
 
