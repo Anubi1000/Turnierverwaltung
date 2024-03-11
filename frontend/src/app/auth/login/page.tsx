@@ -2,6 +2,8 @@
 import {signIn, SignInOptions} from "next-auth/react";
 import React, {FormEvent} from "react";
 import {useSearchParams} from "next/navigation";
+import {Button} from "@/components/Button";
+import {Text} from "@/components/Text";
 
 export default function Page() {
     const searchParams = useSearchParams()
@@ -27,7 +29,7 @@ export default function Page() {
     return (
         <div className="flex flex-col h-screen">
             <div className="basis-1/3 flex flex-col items-center justify-center">
-                <h1 className="font-bold text-3xl">Anmeldung</h1>
+                <Text level="h1">Anmeldung</Text>
             </div>
             <div className="basis-1/3 flex flex-col items-center justify-center">
                 <form className="flex flex-col" onSubmit={onFormSubmit}>
@@ -35,7 +37,7 @@ export default function Page() {
                         <p className="font-semibold">Passwort</p>
                         <input className="border rounded-md border-gray-300 p-1" name="password" type="password"/>
                     </label>
-                    <button className="rounded-md bg-black text-white p-2 mt-2" type="submit">Anmelden</button>
+                    <Button classNames="mt-2" type="submit">Anmelden</Button>
                 </form>
             </div>
             <div className="basis-1/3 flex flex-col items-center justify-center">

@@ -1,6 +1,6 @@
 import React from "react";
-import {MediumButton} from "@/components/MediumButton";
 import Link from "next/link";
+import {Button} from "@/components/Button";
 
 export default function NotFound() {
     return (
@@ -12,7 +12,7 @@ export default function NotFound() {
                 </div>
                 <div className="basis-1/3 flex flex-col items-center justify-center">
                     <Link href="/">
-                        <MediumButton>Start</MediumButton>
+                        <Button classNames="min-w-48">Start</Button>
                     </Link>
                 </div>
             </div>

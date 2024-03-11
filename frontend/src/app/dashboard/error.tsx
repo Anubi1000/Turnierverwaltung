@@ -1,6 +1,6 @@
 "use client"
-import {MediumButton} from "@/components/MediumButton";
 import React from "react";
+import {Button} from "@/components/Button";
 
 export default function Error({
     reset,
@@ -15,7 +15,7 @@ export default function Error({
                     <h1>Etwas ist schiefgelaufen</h1>
                 </div>
                 <div className="basis-1/3 flex flex-col items-center justify-center">
-                    <MediumButton onClick={() => reset()}>Erneut versuchen</MediumButton>
+                    <Button classNames="min-w-48" onClick={() => reset()}>Erneut versuchen</Button>
                 </div>
             </div>
         </main>

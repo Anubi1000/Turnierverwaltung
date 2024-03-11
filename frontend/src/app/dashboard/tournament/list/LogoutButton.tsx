@@ -1,7 +1,7 @@
 "use client";
-import {SmallButton} from "@/components/SmallButton";
 import {signOut} from "next-auth/react";
+import {Button} from "@/components/Button";
 
-export default function LogoutButton() {
-    return <SmallButton classNames="my-1 mr-2" onClick={() => signOut({callbackUrl: "/"})}>Abmelden</SmallButton>
+export function LogoutButton() {
+    return <Button classNames="my-1 mr-2" onClick={() => signOut({callbackUrl: "/"})}>Abmelden</Button>
 }
