@@ -4,11 +4,11 @@ import Link from "next/link";
 import useSWR, {SWRResponse} from "swr";
 import {LoadingText} from "@/components/LoadingText";
 import {ErrorText} from "@/components/ErrorText";
+import {Text} from "@/components/Text";
 
 
 // @ts-ignore
 const fetcher = (...args: any[]) => fetch(...args).then(res => res.json())
-
 
 export function TournamentList() {
     const {
@@ -38,7 +38,7 @@ export function TournamentList() {
         }
 
         return <Link key={info.id} href={`/dashboard/tournament/${info.id}`} className={classes}>
-            <p className="font-semibold text-lg">{info.name}</p>
+            <Text level="h3">{info.name}</Text>
         </Link>
     })
 

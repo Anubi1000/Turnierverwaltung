@@ -1,3 +1,3 @@
 import {LoadingText} from "@/components/LoadingText";
 
-export const Loading = LoadingText
+export default LoadingText
