@@ -12,9 +12,9 @@ export default function Page() {
             <div className="basis-[10%] bg-gray-50 h-screen border-r flex flex-col p-1">
                 <div className="flex items-center">
                     <Link href="/">
-                        <div className="bg-black p-1 rounded-md">
-                            <FontAwesomeIcon icon={faArrowLeft} className="w-5 text-white"/>
-                        </div>
+                        <Button>
+                            <FontAwesomeIcon icon={faArrowLeft} className="w-5 aspect-square"/>
+                        </Button>
                     </Link>
                     <Text level="h2" className="ml-2">Turniere</Text>
                 </div>

@@ -2,6 +2,7 @@ import {TournamentInfo} from "../../../../../../api/types"
 import Link from "next/link";
 import {Text} from "@/components/Text";
 import { unstable_noStore } from "next/cache";
+import {TournamentMenuButton} from "@/app/dashboard/tournament/list/TournamentMenuButton";
 
 export async function TournamentList() {
     unstable_noStore()
@@ -9,7 +10,7 @@ export async function TournamentList() {
     const data: TournamentInfo[] = await response.json()
 
     const elements = data.map((info, index) => {
-        let classes = "flex flex-row p-3 pt-4 pb-4 rounded-md"
+        let classes = "flex flex-row rounded-md items-center"
         if (index % 2 == 1) {
             classes += " bg-gray-200"
         }
@@ -18,9 +19,14 @@ export async function TournamentList() {
             throw Error("id or name not present in entry")
         }
 
-        return <Link key={info.id} href={`/dashboard/tournament/${info.id}`} className={classes}>
-            <Text level="h3">{info.name}</Text>
-        </Link>
+        return (
+            <div key={info.id} className={classes}>
+                <Link href={`/dashboard/tournament/${info.id}`} className="py-4 pl-3 w-full">
+                    <Text level="h3">{info.name}</Text>
+                </Link>
+                <TournamentMenuButton/>
+            </div>
+        )
     })
 
     return (
