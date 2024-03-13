@@ -3,5 +3,10 @@ import {signOut} from "next-auth/react";
 import {Button} from "@/components/Button";
 
 export function LogoutButton() {
-    return <Button style="outlined" className="mt-auto" onClick={() => signOut({callbackUrl: "/"})}>Abmelden</Button>
+    return <Button style="outlined" className="mt-auto" onClick={() => signOut({callbackUrl: "/"})}>
+        <div className="flex justify-center">
+            <span className="material-symbols-outlined mr-1">logout</span>
+            Abmelden
+        </div>
+    </Button>
 }
