@@ -1,27 +1,12 @@
-"use client"
 import {TournamentInfo} from "../../../../../../api/types"
 import Link from "next/link";
-import useSWR, {SWRResponse} from "swr";
-import {LoadingText} from "@/components/LoadingText";
-import {ErrorText} from "@/components/ErrorText";
 import {Text} from "@/components/Text";
+import { unstable_noStore } from "next/cache";
 
-
-// @ts-ignore
-const fetcher = (...args: any[]) => fetch(...args).then(res => res.json())
-
-export function TournamentList() {
-    const {
-        data,
-        error,
-        isLoading
-    }: SWRResponse<TournamentInfo[], any> = useSWR("http://localhost:8080/tournaments", fetcher)
-    if (isLoading) {
-        return <LoadingText/>
-    }
-    if (error || !data) {
-        return <ErrorText/>
-    }
+export async function TournamentList() {
+    unstable_noStore()
+    const response = await fetch(`${process.env["API_URL"]}/tournaments`)
+    const data: TournamentInfo[] = await response.json()
 
     const elements = data.map((info, index) => {
         let classes = "flex flex-row p-3 pt-4 pb-4 rounded-md mx-1"
@@ -30,11 +15,7 @@ export function TournamentList() {
         }
 
         if (!info.id || !info.name) {
-            return (
-                <div key={index} className={classes}>
-                    <ErrorText fillScreen={false}/>
-                </div>
-            )
+            throw Error("id or name not present in entry")
         }
 
         return <Link key={info.id} href={`/dashboard/tournament/${info.id}`} className={classes}>
