@@ -17,7 +17,7 @@ export default function Error({
                 <Text level="h1" className="text-red-500">Etwas ist schiefgelaufen</Text>
             </div>
             <div className="basis-1/3 flex flex-col items-center justify-center">
-                <Button classNames="min-w-48" onClick={reset}>Erneut versuchen</Button>
+                <Button className="min-w-48" onClick={reset}>Erneut versuchen</Button>
             </div>
         </div>
     )

@@ -37,7 +37,7 @@ export default function Page() {
                         <p className="font-semibold">Passwort</p>
                         <input className="border rounded-md border-gray-300 p-1" name="password" type="password"/>
                     </label>
-                    <Button classNames="mt-2" type="submit">Anmelden</Button>
+                    <Button className="mt-2" type="submit">Anmelden</Button>
                 </form>
             </div>
             <div className="basis-1/3 flex flex-col items-center justify-center">

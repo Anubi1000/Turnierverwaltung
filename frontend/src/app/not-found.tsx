@@ -12,7 +12,7 @@ export default function NotFound() {
             </div>
             <div className="basis-1/3 flex flex-col items-center justify-center">
                 <Link href="/">
-                    <Button classNames="min-w-48">Start</Button>
+                    <Button className="min-w-48">Start</Button>
                 </Link>
             </div>
         </div>

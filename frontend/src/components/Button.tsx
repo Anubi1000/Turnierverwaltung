@@ -1,18 +1,29 @@
 import React from "react";
 
 export function Button({
-    classNames,
+    className,
+    style,
     type,
     onClick,
     children
 }: {
-    classNames?: string
+    className?: string
+    style?: "filled" | "outlined"
     type?: "submit" | "reset" | "button" | undefined;
     onClick?: () => void
     children: React.ReactNode
 }) {
-    let style = "bg-black text-white rounded-md transition-colors hover:bg-gray-800 p-2"
-    if (classNames) style += ` ${classNames}`
+    if (!style) style = "filled"
 
-    return <button className={style} type={type} onClick={onClick}>{children}</button>
+    let classes = "rounded-md transition-colors p-2"
+    switch (style) {
+        case "filled":
+            classes += " bg-black text-white hover:bg-gray-800"
+            break
+        case "outlined":
+            classes += " border border-black hover:border-gray-400"
+    }
+    if (className) classes += ` ${className}`
+
+    return <button className={classes} type={type} onClick={onClick}>{children}</button>
 }

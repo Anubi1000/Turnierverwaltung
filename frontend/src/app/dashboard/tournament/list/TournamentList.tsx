@@ -9,7 +9,7 @@ export async function TournamentList() {
     const data: TournamentInfo[] = await response.json()
 
     const elements = data.map((info, index) => {
-        let classes = "flex flex-row p-3 pt-4 pb-4 rounded-md mx-1"
+        let classes = "flex flex-row p-3 pt-4 pb-4 rounded-md"
         if (index % 2 == 1) {
             classes += " bg-gray-200"
         }
@@ -24,7 +24,7 @@ export async function TournamentList() {
     })
 
     return (
-        <div className="overflow-y-auto">
+        <div className="overflow-y-auto m-1">
             {elements}
         </div>
     )

@@ -2,23 +2,29 @@ import Link from "next/link";
 import {TournamentList} from "@/app/dashboard/tournament/list/TournamentList";
 import {LogoutButton} from "@/app/dashboard/tournament/list/LogoutButton";
 import {Button} from "@/components/Button";
+import {Text} from "@/components/Text";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 export default function Page() {
     return (
-        <div>
-            <div className="h-screen flex flex-col">
-                <div className="w-screen h-min-12 border-b-2 flex flex-row items-center">
-                    <Link className="font-bold text-2xl ml-1" href="/">
-                        <h1>Turniere</h1>
+        <div className="flex">
+            <div className="basis-[10%] bg-gray-50 h-screen border-r flex flex-col p-1">
+                <div className="flex items-center">
+                    <Link href="/">
+                        <div className="bg-black p-1 rounded-md">
+                            <FontAwesomeIcon icon={faArrowLeft} className="w-5 text-white"/>
+                        </div>
                     </Link>
-                    <div className="ml-auto">
-                        <Link href="/dashboard/tournament/create" className="mr-2">
-                            <Button classNames="my-1">Neues Turnier</Button>
-                        </Link>
-                        <LogoutButton/>
-                    </div>
+                    <Text level="h2" className="ml-2">Turniere</Text>
                 </div>
+                <Link href="/dashboard/tournament/create" className="mt-1">
+                    <Button className="w-full">Neues Turnier</Button>
+                </Link>
 
+                <LogoutButton/>
+            </div>
+            <div className="basis-[90%] h-screen">
                 <TournamentList/>
             </div>
         </div>
