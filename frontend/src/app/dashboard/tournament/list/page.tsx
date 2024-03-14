@@ -3,11 +3,12 @@ import {TournamentList} from "@/app/dashboard/tournament/list/TournamentList";
 import {LogoutButton} from "@/app/dashboard/tournament/list/LogoutButton";
 import {Button} from "@/components/Button";
 import {Text} from "@/components/Text";
+import {Sidebar} from "@/components/Sidebar";
 
 export default function Page() {
     return (
         <div className="flex">
-            <div className="basis-[10%] bg-gray-50 h-screen border-r flex flex-col p-1 min-w-48">
+            <Sidebar>
                 <div className="flex items-center">
                     <Link href="/">
                         <Button className="h-[40px]">
@@ -26,8 +27,8 @@ export default function Page() {
                 </Link>
 
                 <LogoutButton/>
-            </div>
-            <div className="basis-[90%] h-screen">
+            </Sidebar>
+            <div className="flex-grow h-screen">
                 <TournamentList/>
             </div>
         </div>

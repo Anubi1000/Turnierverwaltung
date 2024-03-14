@@ -1,18 +1,25 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import {EditForm} from "@/app/dashboard/tournament/create/EditForm";
+import {Button} from "@/components/Button";
+import {Text} from "@/components/Text";
+import {Sidebar} from "@/components/Sidebar";
 
 export default function Page() {
     return (
-        <div>
-            <div className="h-screen flex flex-col">
-                <div className="w-screen h-min-12 border-b-2 flex flex-row items-center">
-                    <Link className="font-bold text-2xl ml-1" href="/dashboard/tournament/list">
-                        <h1 className="ont-bold text-2xl ml-1">Neues Turnier</h1>
+        <div className="flex">
+            <Sidebar>
+                <div className="flex items-center">
+                    <Link href="/dashboard/tournament/list">
+                        <Button className="h-[40px]">
+                            <span className="material-symbols-outlined">arrow_back</span>
+                        </Button>
                     </Link>
+                    <Text level="h2" className="mx-2">Turnier erstellen</Text>
                 </div>
-                <EditForm/>
+            </Sidebar>
+            <div className="flex-grow h-screen">
+
             </div>
         </div>
     )
