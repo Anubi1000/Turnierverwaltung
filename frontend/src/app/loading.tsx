@@ -1,3 +1,3 @@
-import {LoadingText} from "@/components/LoadingText";
+import { LoadingText } from "@/components/LoadingText";
 
-export default LoadingText
+export default LoadingText;

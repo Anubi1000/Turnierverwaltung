@@ -1,22 +1,22 @@
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import "material-symbols";
 
-const inter = Inter({subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Turnierverwaltung"
+  title: "Turnierverwaltung",
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="de">
-        <body className={inter.className}>{children}</body>
-        </html>
-    );
+  return (
+    <html lang="de">
+      <body className={inter.className}>{children}</body>
+    </html>
+  );
 }

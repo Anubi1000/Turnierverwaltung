@@ -1,4 +1,4 @@
 interface ScoreboardColumn {
-    name: string;
-    weight: number
+  name: string;
+  weight: number;
 }

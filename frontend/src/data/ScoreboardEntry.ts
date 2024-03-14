@@ -1,6 +1,6 @@
 interface ScoreboardEntry {
-    place: number
-    name: string
-    club: string
-    points: number
+  place: number;
+  name: string;
+  club: string;
+  points: number;
 }

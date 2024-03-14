@@ -1,4 +1,4 @@
 interface ScoreboardInfo {
-    columns: ScoreboardColumn[];
-    values: string[][]
+  columns: ScoreboardColumn[];
+  values: string[][];
 }
