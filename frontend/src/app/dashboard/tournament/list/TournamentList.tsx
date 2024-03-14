@@ -23,7 +23,7 @@ export async function TournamentList() {
       <div key={info.id} className={classes}>
         <Link
           href={`/dashboard/tournament/${info.id}`}
-          className="py-4 pl-3 w-full"
+          className="w-full py-4 pl-3"
         >
           <Text level="h3">{info.name}</Text>
         </Link>
@@ -32,5 +32,5 @@ export async function TournamentList() {
     );
   });
 
-  return <div className="overflow-y-auto m-1">{elements}</div>;
+  return <div className="m-1 overflow-y-auto">{elements}</div>;
 }

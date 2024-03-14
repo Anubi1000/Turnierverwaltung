@@ -30,7 +30,7 @@ export default function Page() {
 
         <LogoutButton />
       </Sidebar>
-      <div className="flex-grow h-screen">
+      <div className="h-screen flex-grow">
         <TournamentList />
       </div>
     </div>

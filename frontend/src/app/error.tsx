@@ -12,13 +12,13 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="flex flex-col h-screen">
-      <div className="basis-1/3 flex flex-row text-3xl font-bold items-center justify-center">
+    <div className="flex h-screen flex-col">
+      <div className="flex basis-1/3 flex-row items-center justify-center text-3xl font-bold">
         <Text level="h1" className="text-red-500">
           Etwas ist schiefgelaufen
         </Text>
       </div>
-      <div className="basis-1/3 flex flex-col items-center justify-center">
+      <div className="flex basis-1/3 flex-col items-center justify-center">
         <Button className="min-w-48" onClick={reset}>
           Erneut versuchen
         </Button>

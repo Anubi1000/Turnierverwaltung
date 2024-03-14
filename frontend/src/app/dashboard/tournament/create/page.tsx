@@ -20,7 +20,7 @@ export default function Page() {
           </Text>
         </div>
       </Sidebar>
-      <div className="flex-grow h-screen"></div>
+      <div className="h-screen flex-grow"></div>
     </div>
   );
 }

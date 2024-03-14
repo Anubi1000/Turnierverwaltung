@@ -24,23 +24,23 @@ export default function Page() {
 
   if (searchParams.get("error") == "CredentialsSignin") {
     errorContent = (
-      <h1 className="font-semibold text-red-500 text-1xl">
+      <h1 className="text-1xl font-semibold text-red-500">
         Ungültige Anmeldedaten
       </h1>
     );
   }
 
   return (
-    <div className="flex flex-col h-screen">
-      <div className="basis-1/3 flex flex-col items-center justify-center">
+    <div className="flex h-screen flex-col">
+      <div className="flex basis-1/3 flex-col items-center justify-center">
         <Text level="h1">Anmeldung</Text>
       </div>
-      <div className="basis-1/3 flex flex-col items-center justify-center">
+      <div className="flex basis-1/3 flex-col items-center justify-center">
         <form className="flex flex-col" onSubmit={onFormSubmit}>
           <label>
             <p className="font-semibold">Passwort</p>
             <input
-              className="border rounded-md border-gray-300 p-1"
+              className="rounded-md border border-gray-300 p-1"
               name="password"
               type="password"
             />
@@ -50,7 +50,7 @@ export default function Page() {
           </Button>
         </form>
       </div>
-      <div className="basis-1/3 flex flex-col items-center justify-center">
+      <div className="flex basis-1/3 flex-col items-center justify-center">
         {errorContent}
       </div>
     </div>

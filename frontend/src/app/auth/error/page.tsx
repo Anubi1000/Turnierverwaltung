@@ -6,11 +6,11 @@ export default function Page() {
   const searchParams = useSearchParams();
 
   return (
-    <div className="flex flex-col h-screen items-center justify-center">
-      <h2 className="font-semibold text-2xl">
+    <div className="flex h-screen flex-col items-center justify-center">
+      <h2 className="text-2xl font-semibold">
         Es ist ein Fehler beim Anmelden aufgetreten
       </h2>
-      <p className="font-semibold text-xl text-red-500">
+      <p className="text-xl font-semibold text-red-500">
         {" "}
         {searchParams.get("error")}
       </p>

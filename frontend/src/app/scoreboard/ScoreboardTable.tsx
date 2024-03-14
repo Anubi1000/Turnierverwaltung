@@ -91,7 +91,7 @@ export function ScoreboardTable() {
     return (
       <th
         key={column.name}
-        className="text-xl border-b-2 border-b-black"
+        className="border-b-2 border-b-black text-xl"
         style={{ width: `${column.weight}%` }}
       >
         {column.name}
@@ -125,8 +125,8 @@ export function ScoreboardTable() {
   });
 
   return (
-    <div className="overflow-y-hidden flex-grow" ref={tableRef}>
-      <table className="table-fixed w-full border-separate border-spacing-0">
+    <div className="flex-grow overflow-y-hidden" ref={tableRef}>
+      <table className="w-full table-fixed border-separate border-spacing-0">
         <thead className="sticky top-0 bg-white">
           <tr className="sticky">{headElements}</tr>
         </thead>

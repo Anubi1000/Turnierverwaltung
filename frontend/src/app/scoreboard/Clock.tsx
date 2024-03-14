@@ -18,7 +18,7 @@ export default function Clock() {
     }, 1000);
   });
   return (
-    <p className="text-4xl font-semibold ml-auto">
+    <p className="ml-auto text-4xl font-semibold">
       {hours}:{minutes}:{seconds}
     </p>
   );

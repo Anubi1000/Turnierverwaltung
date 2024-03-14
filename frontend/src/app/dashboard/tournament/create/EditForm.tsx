@@ -20,9 +20,9 @@ export function EditForm() {
     <div className="m-1 flex flex-row">
       <div className="basis-1/2">
         <label>
-          <p className="font-semibold text-xl">Name</p>
+          <p className="text-xl font-semibold">Name</p>
           <input
-            className="border rounded-md border-gray-300 p-1 w-64"
+            className="w-64 rounded-md border border-gray-300 p-1"
             value={tournament.name}
             onChange={(e) =>
               updateTournament((draft) => {
@@ -34,7 +34,7 @@ export function EditForm() {
         </label>
       </div>
       <div className="basis-1/2">
-        <p className="font-semibold text-xl">Werte</p>
+        <p className="text-xl font-semibold">Werte</p>
         <table className="w-[100%]">
           <thead>
             <tr>
@@ -60,7 +60,7 @@ export function EditForm() {
                 <tr key={valueIndex}>
                   <td>
                     <input
-                      className="w-full border rounded-md border-gray-300 p-1"
+                      className="w-full rounded-md border border-gray-300 p-1"
                       value={tournamentValue.name}
                       onChange={(e) =>
                         updateTournament((draft) => {
@@ -73,7 +73,7 @@ export function EditForm() {
                   </td>
                   <td>
                     <select
-                      className="w-full border rounded-md border-gray-300 p-1"
+                      className="w-full rounded-md border border-gray-300 p-1"
                       value={tournamentValue.type}
                       onChange={(e) =>
                         updateTournament((draft) => {
@@ -92,7 +92,7 @@ export function EditForm() {
                   </td>
                   <td>
                     <input
-                      className="w-full border rounded-md border-gray-300 p-1"
+                      className="w-full rounded-md border border-gray-300 p-1"
                       value={tournamentValue.formula || ""}
                       onChange={(e) =>
                         updateTournament((draft) => {
