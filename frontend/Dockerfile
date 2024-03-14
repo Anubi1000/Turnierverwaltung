@@ -1,4 +1,4 @@
-FROM node:21-alpine as base
+FROM node:20-alpine as base
 
 FROM base as build
 WORKDIR /app
@@ -6,11 +6,13 @@ WORKDIR /app
 # Disable telemetry
 ENV NEXT_TELEMETRY_DISABLED 1
 
-COPY package.json package-lock.json ./
-RUN npm install
+RUN corepack enable
+
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 COPY . ./
-RUN npm run build
+RUN pnpm run build
 
 FROM base as run
 WORKDIR /app
