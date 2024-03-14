@@ -5,7 +5,7 @@ export default function Text({
   className,
   children,
 }: {
-  level: "h1" | "h2" | "h3";
+  level: "h1" | "h2" | "h3" | "label";
   className?: string;
   children: React.ReactNode;
 }) {
@@ -21,6 +21,8 @@ export default function Text({
       return <h2 className={"text-2xl font-bold" + className}>{children}</h2>;
     case "h3":
       return <h3 className={"text-xl font-bold" + className}>{children}</h3>;
+    case "label":
+      return <p className={"font-semibold" + className}>{children}</p>;
     default:
       throw new Error(`Unhandled level: ${level}`);
   }
