@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { Button } from "@/components/Button";
-import { Text } from "@/components/Text";
-import { Sidebar } from "@/components/Sidebar";
+import Button from "@/components/Button";
+import Text from "@/components/Text";
+import Sidebar from "@/components/Sidebar";
 
 export default function Page() {
   return (

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Text } from "@/components/Text";
+import Text from "@/components/Text";
 
 function HomeLink({ name, link }: { name: string; link: string }) {
   return (

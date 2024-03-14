@@ -1,7 +1,7 @@
 "use client";
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
 
-export function TournamentMenuButton() {
+export default function TournamentMenuButton() {
   return (
     <Menu
       menuButton={

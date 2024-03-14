@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 
 const scrollInterval = 20;
 
-export function ScoreboardTable() {
+export default function ScoreboardTable() {
   const info: ScoreboardInfo = {
     columns: [
       {

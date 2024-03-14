@@ -2,8 +2,8 @@
 import { signIn, SignInOptions } from "next-auth/react";
 import React, { FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
-import { Button } from "@/components/Button";
-import { Text } from "@/components/Text";
+import Button from "@/components/Button";
+import Text from "@/components/Text";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -23,11 +23,7 @@ export default function Page() {
   let errorContent: React.ReactNode = <div />;
 
   if (searchParams.get("error") == "CredentialsSignin") {
-    errorContent = (
-      <h1 className="text-1xl font-semibold text-red-500">
-        Ungültige Anmeldedaten
-      </h1>
-    );
+    errorContent = <Text level="h1">Ungültige Anmeldedaten</Text>;
   }
 
   return (

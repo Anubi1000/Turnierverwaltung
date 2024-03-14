@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Text({
+export default function Text({
   level,
   className,
   children,

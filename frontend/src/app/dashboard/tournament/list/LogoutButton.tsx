@@ -1,8 +1,8 @@
 "use client";
 import { signOut } from "next-auth/react";
-import { Button } from "@/components/Button";
+import Button from "@/components/Button";
 
-export function LogoutButton() {
+export default function LogoutButton() {
   return (
     <Button
       style="outlined"

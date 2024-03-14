@@ -1,10 +1,10 @@
 import { TournamentInfo } from "../../../../../../api/types";
 import Link from "next/link";
-import { Text } from "@/components/Text";
+import Text from "@/components/Text";
 import { unstable_noStore } from "next/cache";
-import { TournamentMenuButton } from "@/app/dashboard/tournament/list/TournamentMenuButton";
+import TournamentMenuButton from "@/app/dashboard/tournament/list/TournamentMenuButton";
 
-export async function TournamentList() {
+export default async function TournamentList() {
   unstable_noStore();
   const response = await fetch(`${process.env["API_URL"]}/tournaments`);
   const data: TournamentInfo[] = await response.json();

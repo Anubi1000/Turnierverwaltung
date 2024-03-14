@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { TournamentList } from "@/app/dashboard/tournament/list/TournamentList";
-import { LogoutButton } from "@/app/dashboard/tournament/list/LogoutButton";
-import { Button } from "@/components/Button";
-import { Text } from "@/components/Text";
-import { Sidebar } from "@/components/Sidebar";
+import TournamentList from "@/app/dashboard/tournament/list/TournamentList";
+import LogoutButton from "@/app/dashboard/tournament/list/LogoutButton";
+import Button from "@/components/Button";
+import Text from "@/components/Text";
+import Sidebar from "@/components/Sidebar";
 
 export default function Page() {
   return (
