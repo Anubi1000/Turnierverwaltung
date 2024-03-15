@@ -12,6 +12,5 @@ interface TournamentValue {
   id: string;
   name: string;
   type: "input" | "calculated";
-  isResult: boolean;
   formula?: string;
 }

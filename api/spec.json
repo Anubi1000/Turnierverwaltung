@@ -188,8 +188,7 @@
           "required": [
             "id",
             "name",
-            "type",
-            "isResult"
+            "type"
           ],
           "properties": {
             "id": {
@@ -204,9 +203,6 @@
                 "input",
                 "calculated"
               ]
-            },
-            "isResult": {
-              "type": "boolean"
             },
             "formula": {
               "type": "string"

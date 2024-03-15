@@ -52,14 +52,7 @@ export default function Page() {
         id: "points",
         name: "Punkte",
         type: "input",
-        isResult: true,
-      },
-      {
-        id: "test",
-        name: "test",
-        type: "input",
-        isResult: false,
-      },
+      }
     ],
   } as Tournament);
 
@@ -89,8 +82,7 @@ export default function Page() {
                 draft.values.push({
                   id: "test",
                   name: "",
-                  type: "input",
-                  isResult: false,
+                  type: "input"
                 });
               })
             }

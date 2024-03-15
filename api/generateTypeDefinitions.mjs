@@ -16,7 +16,7 @@ for (const schemaName in schemas) {
         const property = schema.properties[propertyName];
         const required = schema.required.includes(propertyName);
         
-        file += `    ${propertyName}${required ? "" : "?"}: `;
+        file += `  ${propertyName}${required ? "" : "?"}: `;
 
         if (property.type == "array") {
             const typeParts = property.items["$ref"].split("/");
