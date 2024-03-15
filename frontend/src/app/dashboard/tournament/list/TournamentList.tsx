@@ -1,4 +1,3 @@
-import { TournamentInfo } from "../../../../../../api/types";
 import Link from "next/link";
 import Text from "@/components/Text";
 import { unstable_noStore } from "next/cache";

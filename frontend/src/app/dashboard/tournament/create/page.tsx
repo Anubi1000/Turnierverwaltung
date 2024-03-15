@@ -5,7 +5,6 @@ import Text from "@/components/Text";
 import Sidebar from "@/components/Sidebar";
 import TitleWithBackButton from "@/components/TitleWithBackButton";
 import { Updater, useImmer } from "use-immer";
-import { Tournament } from "../../../../../../api/types";
 
 function SaveButton() {
   return (

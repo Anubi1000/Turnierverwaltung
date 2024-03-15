@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier ./src --write"
+    "format": "prettier ./src --write",
+    "genApiTypes": "node ../api/generateTypeDefinitions.mjs ../api/spec.json ./src/api-types.d.ts"
   },
   "dependencies": {
     "@headlessui/react": "1.7.18",

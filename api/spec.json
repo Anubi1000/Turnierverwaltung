@@ -1,0 +1,218 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Turnierverwaltung",
+      "version": "0.1.0"
+    },
+    "paths": {
+      "/ping": {
+        "get": {
+          "description": "Ping Server",
+          "tags": [
+            "Other"
+          ],
+          "responses": {
+            "200": {
+              "description": "Pong"
+            }
+          }
+        }
+      },
+      "/tournaments": {
+        "get": {
+          "description": "List all tournaments",
+          "tags": [
+            "Tournaments"
+          ],
+          "responses": {
+            "200": {
+              "description": "An array with all tournaments or an empty array of none are found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/TournamentInfo"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "description": "Add a new tournament",
+          "tags": [
+            "Tournaments"
+          ],
+          "requestBody": {
+            "description": "Properties of the new tournament",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tournament"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "The tournament has been created"
+            },
+            "400": {
+              "description": "The request contained invalid content"
+            }
+          }
+        }
+      },
+      "/tournaments/{tournamentId}": {
+        "get": {
+          "description": "Get a Tournament",
+          "tags": [
+            "Tournaments"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "tournamentId",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Tournament"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "The tournament with the specified id did not exist"
+            }
+          }
+        },
+        "put": {
+          "description": "Update a Tournament",
+          "tags": [
+            "Tournaments"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "tournamentId",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "description": "New properties of the tournament",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tournament"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "The tournament has been updated"
+            },
+            "400": {
+              "description": "The request contained invalid content"
+            }
+          }
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "Other"
+      },
+      {
+        "name": "Tournaments"
+      }
+    ],
+    "servers": [
+      {
+        "url": "http://localhost:8080"
+      }
+    ],
+    "components": {
+      "schemas": {
+        "TournamentInfo": {
+          "type": "object",
+          "required": [
+            "id",
+            "name"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "Tournament": {
+          "type": "object",
+          "required": [
+            "name",
+            "values"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/TournamentValue"
+              }
+            }
+          }
+        },
+        "TournamentValue": {
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "type",
+            "isResult"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "input",
+                "calculated"
+              ]
+            },
+            "isResult": {
+              "type": "boolean"
+            },
+            "formula": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
