@@ -3,10 +3,9 @@ import pino from "pino";
 import { closeDb, setupDB } from "./db";
 import { Tournament, TournamentInfo, TournamentValue } from "./api-types";
 import { Collection, UUID } from "mongodb";
-import { v5 as uuid } from "uuid";
+import { v4 as uuid } from "uuid";
 
 let env = process.env.NODE_ENV || "development";
-let UUID_NAMESPACE = "tournaments";
 let tournament_prefix = "tour_";
 
 let level;
@@ -55,7 +54,7 @@ async function main() {
     //returns array of tournament infos
     //tournament info is name and id
     var result: TournamentInfo[] = [];
-    const collection_info_cursor = await db.listCollections();
+    const collection_info_cursor = db.listCollections();
     for await (const collection of collection_info_cursor) {
       const info_doc = await db
         .collection(collection.name)
@@ -84,7 +83,7 @@ async function main() {
     const tournament = req.body;
     const name = tournament.name;
     const values = tournament.values;
-    const id = uuid(name, UUID_NAMESPACE);
+    const id = uuid();
     const info_doc = await db
       .collection(tournament_prefix + id.toString())
       .insertOne({
@@ -132,7 +131,7 @@ async function main() {
     const tournament_string = req.params.tournamentId;
     const tournament = req.body;
     const info_query = { type: "info" };
-    const collection = await db.collection(
+    const collection = db.collection(
       tournament_prefix + tournament_string,
     );
     const info_doc = await collection.findOne(info_query);
