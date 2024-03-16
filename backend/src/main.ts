@@ -135,13 +135,26 @@ async function main() {
       tournament_prefix + tournament_string,
     );
     const info_doc = await collection.findOne(info_query);
-    var tournament_name, tournament_values;
     if (info_doc == null) {
       res.status(400).send("The request contained invalid content");
       return;
     } else {
       info_doc.name = tournament.name;
       info_doc.values = tournament.values;
+      res.status(200).send("The tournament has been updated");
+    }
+  });
+
+  app.delete("/tournaments/:tournamentId", async (req, res) => {
+    //delete the given tournament in db
+    const tournament_string = req.params.tournamentId;
+    const tournament_name = tournament_prefix + tournament_string;
+    const collection = db.collection(tournament_name);
+    if (collection == null) {
+      res.status(404).send("The tournament couldn't get deleted because it was not found");
+      return;
+    } else {
+      db.dropCollection(tournament_name)
       res.status(200).send("The tournament has been updated");
     }
   });
