@@ -1,11 +1,11 @@
 import Link from "next/link";
-import TournamentList from "@/app/dashboard/tournament/list/TournamentList";
 import LogoutButton from "@/app/dashboard/tournament/list/LogoutButton";
 import Sidebar from "@/components/Sidebar";
 import React from "react";
 import { Button } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import TitleWithBackButton from "@/components/TitleWithBackButton";
+import TournamentList from "@/app/dashboard/tournament/list/TournamentList";
 
 export default function Page() {
   return (
@@ -21,9 +21,7 @@ export default function Page() {
 
         <LogoutButton />
       </Sidebar>
-      <div className="h-screen flex-grow">
-        <TournamentList />
-      </div>
+      <TournamentList />
     </div>
   );
 }

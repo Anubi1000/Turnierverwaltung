@@ -1,11 +1,18 @@
 "use client";
 import { MoreVert } from "@mui/icons-material";
-import { IconButton, Menu, MenuItem } from "@mui/material";
-import React from "react";
+import { Button, Dialog, Menu, MenuItem } from "@mui/material";
+import React, { useState } from "react";
+import DeleteDialog from "@/app/dashboard/tournament/list/DeleteDialog";
 
-export default function TournamentMenuButton() {
+export default function TournamentMenuButton({
+  deleteTournament,
+}: {
+  deleteTournament: () => void;
+}) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const menuOpen = Boolean(anchorEl);
+  const [showDialog, setShowDialog] = useState(false);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -13,18 +20,22 @@ export default function TournamentMenuButton() {
     setAnchorEl(null);
     // @ts-ignore
     const action = e.target["id"].replace("action_", "");
-    console.log(action);
+    if (action === "delete") {
+      setShowDialog(true);
+    }
   };
 
   return (
     <>
-      <div className="mr-2">
-        <IconButton onClick={handleClick}>
-          <MoreVert />
-        </IconButton>
-      </div>
+      <Button onClick={handleClick} startIcon={<MoreVert />}>
+        Mehr
+      </Button>
 
-      <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
+      <Menu
+        anchorEl={anchorEl}
+        open={menuOpen}
+        onClose={() => setAnchorEl(null)}
+      >
         <MenuItem id="action_edit" onClick={handleClose}>
           Bearbeiten
         </MenuItem>
@@ -32,6 +43,12 @@ export default function TournamentMenuButton() {
           Löschen
         </MenuItem>
       </Menu>
+
+      <DeleteDialog
+        open={showDialog}
+        close={() => setShowDialog(false)}
+        deleteTournament={deleteTournament}
+      />
     </>
   );
 }
