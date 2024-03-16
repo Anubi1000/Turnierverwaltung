@@ -4,16 +4,24 @@ import Sidebar from "@/components/Sidebar";
 import TitleWithBackButton from "@/components/TitleWithBackButton";
 import { Updater, useImmer } from "use-immer";
 import ValuesTable from "@/app/dashboard/tournament/create/ValuesTable";
-import { Button, IconButton, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Add, Save } from "@mui/icons-material";
 
-function SaveButton() {
+function SaveButton({ tournament }: { tournament: Tournament }) {
+  let disabled = tournament.name.length == 0;
+
+  tournament.values.forEach((value) => {
+    if (disabled) return;
+    if (value.name.length == 0) disabled = true;
+  });
+
   return (
     <Button
       startIcon={<Save />}
       variant="contained"
       fullWidth
       style={{ marginTop: "auto" }}
+      disabled={disabled}
     >
       Speichern
     </Button>
@@ -34,8 +42,9 @@ function PropertiesPart({
       </Typography>
       <TextField
         label="Name"
-        required
         type="text"
+        required
+        error={tournament.name.length == 0}
         value={tournament.name}
         onChange={(e) =>
           updateTournament((draft) => {
@@ -95,10 +104,10 @@ export default function Page() {
           href="/dashboard/tournament/list"
         />
 
-        <SaveButton />
+        <SaveButton tournament={tournament} />
       </Sidebar>
 
-      <div className="m-2 h-full flex-grow">
+      <div className="h-screen flex-grow overflow-y-scroll p-2">
         <PropertiesPart
           tournament={tournament}
           updateTournament={updateTournament}
