@@ -110,14 +110,18 @@ router.delete("/:tournamentId", async (req, res) => {
     }
   }
 
+  logger.debug(
+    `DELETE /tournaments/:tournamentId: ${JSON.stringify(tournament_name)}, Found: ${collectionExists}`,
+  );
+
   if (collectionExists) {
+    await db.dropCollection(tournament_name);
+    res.status(200).send("The tournament has been updated");
+    return;
+  } else {
     res
       .status(404)
       .send("The tournament couldn't get deleted because it was not found");
-    return;
-  } else {
-    await db.dropCollection(tournament_name);
-    res.status(200).send("The tournament has been updated");
   }
 });
 
