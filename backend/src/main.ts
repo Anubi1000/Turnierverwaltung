@@ -1,7 +1,7 @@
 import express from "express";
 import pino from "pino";
 import { closeDb, setupDB } from "./db";
-import { Tournament, TournamentInfo, TournamentValue } from "../../api/types";
+import { Tournament, TournamentInfo, TournamentValue } from "./api-types";
 import { Collection, UUID } from "mongodb";
 import { v5 as uuid } from "uuid";
 
