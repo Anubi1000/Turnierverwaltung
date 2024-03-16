@@ -1,22 +1,37 @@
 "use client";
-import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu";
+import { MoreVert } from "@mui/icons-material";
+import { IconButton, Menu, MenuItem } from "@mui/material";
+import React from "react";
 
 export default function TournamentMenuButton() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = (e: React.MouseEvent<HTMLLIElement>) => {
+    setAnchorEl(null);
+    // @ts-ignore
+    const action = e.target["id"].replace("action_", "");
+    console.log(action);
+  };
+
   return (
-    <Menu
-      menuButton={
-        <MenuButton className="mr-2 flex justify-center rounded-md border border-black p-2 transition-colors hover:border-gray-400">
-          <span className="material-symbols-outlined">more_vert</span>
-        </MenuButton>
-      }
-      menuClassName="z-50 bg-white p-2 rounded-md shadow-lg min-w-32 border -translate-x-1"
-    >
-      <MenuItem className="select-none rounded-md px-3 py-1 hover:bg-black hover:text-white">
-        Bearbeiten
-      </MenuItem>
-      <MenuItem className="select-none rounded-md px-3 py-1 hover:bg-black hover:text-white">
-        Löschen
-      </MenuItem>
-    </Menu>
+    <>
+      <div className="mr-2">
+        <IconButton onClick={handleClick}>
+          <MoreVert />
+        </IconButton>
+      </div>
+
+      <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
+        <MenuItem id="action_edit" onClick={handleClose}>
+          Bearbeiten
+        </MenuItem>
+        <MenuItem id="action_delete" onClick={handleClose}>
+          Löschen
+        </MenuItem>
+      </Menu>
+    </>
   );
 }

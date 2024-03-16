@@ -1,23 +1,26 @@
 "use client";
 import React from "react";
-import Button from "@/components/Button";
-import Text from "@/components/Text";
 import Sidebar from "@/components/Sidebar";
 import TitleWithBackButton from "@/components/TitleWithBackButton";
 import { Updater, useImmer } from "use-immer";
+import ValuesTable from "@/app/dashboard/tournament/create/ValuesTable";
+import { Button, IconButton, TextField, Typography } from "@mui/material";
+import { Add, Save } from "@mui/icons-material";
 
 function SaveButton() {
   return (
-    <Button className="mt-auto">
-      <div className="flex justify-center">
-        <span className="material-symbols-outlined mr-1">save</span>
-        Speichern
-      </div>
+    <Button
+      startIcon={<Save />}
+      variant="contained"
+      fullWidth
+      style={{ marginTop: "auto" }}
+    >
+      Speichern
     </Button>
   );
 }
 
-function Properties({
+function PropertiesPart({
   tournament,
   updateTournament,
 }: {
@@ -26,21 +29,49 @@ function Properties({
 }) {
   return (
     <>
-      <Text level="h2">Eigenschaften</Text>
-      <label>
-        <Text level="label">Name</Text>
-        <input
-          className="rounded-md border border-gray-300 p-1"
-          type="text"
-          value={tournament.name}
-          onChange={(e) =>
-            updateTournament((draft) => {
-              draft.name = e.target.value;
-            })
-          }
-        />
-      </label>
+      <Typography variant="h5" style={{ marginBottom: "4px" }}>
+        Eigenschaften
+      </Typography>
+      <TextField
+        label="Name"
+        required
+        type="text"
+        value={tournament.name}
+        onChange={(e) =>
+          updateTournament((draft) => {
+            draft.name = e.target.value;
+          })
+        }
+      />
     </>
+  );
+}
+
+function ValuesPart({
+  updateTournament,
+}: {
+  updateTournament: Updater<Tournament>;
+}) {
+  return (
+    <div className="mt-6 flex items-center">
+      <Typography variant="h5">Werte</Typography>
+      <Button
+        variant="outlined"
+        startIcon={<Add />}
+        onClick={() =>
+          updateTournament((draft) => {
+            draft.values.push({
+              id: crypto.randomUUID(),
+              name: "",
+              type: "input",
+            });
+          })
+        }
+        style={{ marginLeft: "8px" }}
+      >
+        Neuer Wert
+      </Button>
+    </div>
   );
 }
 
@@ -52,7 +83,7 @@ export default function Page() {
         id: "points",
         name: "Punkte",
         type: "input",
-      }
+      },
     ],
   } as Tournament);
 
@@ -68,29 +99,24 @@ export default function Page() {
       </Sidebar>
 
       <div className="m-2 h-full flex-grow">
-        <Properties
+        <PropertiesPart
           tournament={tournament}
           updateTournament={updateTournament}
         />
 
-        <div className="mt-6 flex items-center">
-          <Text level="h2">Werte</Text>
-          <Button
-            className="ml-2 min-w-32"
-            onClick={() =>
-              updateTournament((draft) => {
-                draft.values.push({
-                  id: "test",
-                  name: "",
-                  type: "input"
-                });
-              })
-            }
-          >
-            Neuer Wert
-          </Button>
-        </div>
-        <table className="w-full">
+        <ValuesPart updateTournament={updateTournament} />
+
+        <ValuesTable
+          tournament={tournament}
+          updateTournament={updateTournament}
+        />
+      </div>
+    </div>
+  );
+}
+
+/*
+<table className="w-full">
           <thead>
             <tr>
               <th>Name</th>
@@ -114,8 +140,8 @@ export default function Page() {
               return (
                 <tr key={valueIndex}>
                   <td>
-                    <input
-                      className="w-full rounded-md border border-gray-300 p-1"
+                    <Input
+                      className="w-full"
                       value={tournamentValue.name}
                       onChange={(e) =>
                         updateTournament((draft) => {
@@ -146,8 +172,8 @@ export default function Page() {
                     </select>
                   </td>
                   <td>
-                    <input
-                      className="w-full rounded-md border border-gray-300 p-1"
+                    <Input
+                      className="w-full"
                       value={tournamentValue.formula || ""}
                       onChange={(e) =>
                         updateTournament((draft) => {
@@ -163,7 +189,4 @@ export default function Page() {
             })}
           </tbody>
         </table>
-      </div>
-    </div>
-  );
-}
+ */

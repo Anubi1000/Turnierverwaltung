@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Button from "@/components/Button";
-import Text from "@/components/Text";
 import React from "react";
+import { IconButton, Typography } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
 
 export default function TitleWithBackButton({
   title,
@@ -13,13 +13,11 @@ export default function TitleWithBackButton({
   return (
     <div className="flex items-center">
       <Link href={href}>
-        <Button className="h-[40px]">
-          <span className="material-symbols-outlined">arrow_back</span>
-        </Button>
+        <IconButton>
+          <ArrowBack />
+        </IconButton>
       </Link>
-      <Text level="h2" className="mx-2">
-        {title}
-      </Text>
+      <Typography variant="h5">{title}</Typography>
     </div>
   );
 }

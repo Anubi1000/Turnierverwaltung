@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Text from "@/components/Text";
 import { unstable_noStore } from "next/cache";
 import TournamentMenuButton from "@/app/dashboard/tournament/list/TournamentMenuButton";
+import { Typography } from "@mui/material";
 
 export default async function TournamentList() {
   unstable_noStore();
@@ -9,9 +9,11 @@ export default async function TournamentList() {
   const data: TournamentInfo[] = await response.json();
 
   const elements = data.map((info, index) => {
-    let classes = "flex flex-row rounded-md items-center";
+    let classes = "flex flex-row rounded-md items-center transition-colors";
     if (index % 2 == 1) {
-      classes += " bg-gray-200";
+      classes += " bg-gray-100 hover:bg-gray-200";
+    } else {
+      classes += " hover:bg-gray-100";
     }
 
     if (!info.id || !info.name) {
@@ -24,7 +26,7 @@ export default async function TournamentList() {
           href={`/dashboard/tournament/${info.id}`}
           className="w-full py-4 pl-3"
         >
-          <Text level="h3">{info.name}</Text>
+          <Typography variant="h6">{info.name}</Typography>
         </Link>
         <TournamentMenuButton />
       </div>

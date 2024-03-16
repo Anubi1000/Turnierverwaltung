@@ -1,18 +1,17 @@
 "use client";
 import { signOut } from "next-auth/react";
-import Button from "@/components/Button";
+import { Button } from "@mui/material";
+import { Logout } from "@mui/icons-material";
 
 export default function LogoutButton() {
   return (
     <Button
-      style="outlined"
-      className="mt-auto"
+      variant="outlined"
+      style={{ marginTop: "auto" }}
       onClick={() => signOut({ callbackUrl: "/" })}
+      startIcon={<Logout />}
     >
-      <div className="flex justify-center">
-        <span className="material-symbols-outlined mr-1">logout</span>
-        Abmelden
-      </div>
+      Abmelden
     </Button>
   );
 }
