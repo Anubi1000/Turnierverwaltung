@@ -2,14 +2,16 @@
   "name": "backend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "esbuild src/**/*.ts --outdir=out --platform=node --format=cjs && node ./out/main.js | pino-pretty",
-    "build": "esbuild src/main.ts --bundle --minify --platform=node --outdir=dist",
+    "dev": "esbuild src/**/*.ts --outdir=out --platform=node --format=esm --target=ES2022 && node ./out/main.js | pino-pretty",
+    "build": "esbuild src/main.ts --bundle --minify --platform=node --format=esm --target=ES2022 --outdir=dist",
     "format": "prettier ./src --write",
     "genApiTypes": "node ../api/generateTypeDefinitions.mjs ../api/spec.json ./src/api-types.d.ts"
   },
   "dependencies": {
     "express": "4.18.3",
+    "joi": "17.12.2",
     "mongodb": "6.4.0",
     "pino": "8.19.0",
     "uuid": "9.0.1"
