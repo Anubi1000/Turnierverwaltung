@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "esbuild src/**/*.ts --outdir=out --platform=node --format=cjs && node ./out/main.js | pino-pretty",
     "build": "esbuild src/main.ts --bundle --minify --platform=node --outdir=dist",
-    "format": "prettier ./src --write"
+    "format": "prettier ./src --write",
+    "genApiTypes": "node ../api/generateTypeDefinitions.mjs ../api/spec.json ./src/api-types.d.ts"
   },
   "dependencies": {
     "express": "4.18.3",
