@@ -1,5 +1,5 @@
-/node_modules
-/out
-/dist
 /.idea
-/*.sh
+/coverage
+/dist
+/node_modules
+/*.http

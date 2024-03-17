@@ -1,18 +1,26 @@
-import { closeDb } from "./db.js";
-import logger from "./logger.js";
-import app from "./app.js";
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
 
-const server = app.listen(8080, () => {
-  logger.info("Started");
-});
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
 
-process.on("SIGINT", async () => {
-  logger.info("Stopping (SIGINT)");
-  server.close();
-  await closeDb();
-});
-process.on("SIGTERM", async () => {
-  logger.info("Stopping (SIGTERM)");
-  server.close();
-  await closeDb();
-});
+  const config = new DocumentBuilder()
+    .setTitle('Turnierverwaltung')
+    .addTag('other')
+    .addTag('tournament')
+    .addServer('http://localhost:8080')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+    }),
+  );
+
+  await app.listen(8080);
+}
+bootstrap();
