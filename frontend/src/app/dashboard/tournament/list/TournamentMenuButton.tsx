@@ -1,13 +1,12 @@
-"use client";
 import { MoreVert } from "@mui/icons-material";
-import { Button, Dialog, Menu, MenuItem } from "@mui/material";
+import { Button, Menu, MenuItem } from "@mui/material";
 import React, { useState } from "react";
 import DeleteDialog from "@/app/dashboard/tournament/list/DeleteDialog";
 
 export default function TournamentMenuButton({
-  deleteTournament,
+  onDelete,
 }: {
-  deleteTournament: () => void;
+  onDelete: () => Promise<void>;
 }) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const menuOpen = Boolean(anchorEl);
@@ -47,7 +46,7 @@ export default function TournamentMenuButton({
       <DeleteDialog
         open={showDialog}
         close={() => setShowDialog(false)}
-        deleteTournament={deleteTournament}
+        onDelete={onDelete}
       />
     </>
   );

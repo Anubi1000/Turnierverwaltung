@@ -6,8 +6,10 @@ import { Updater, useImmer } from "use-immer";
 import ValuesTable from "@/app/dashboard/tournament/create/ValuesTable";
 import { Button, TextField, Typography } from "@mui/material";
 import { Add, Save } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 
 function SaveButton({ tournament }: { tournament: Tournament }) {
+  const router = useRouter();
   let disabled = tournament.name.length == 0;
 
   tournament.values.forEach((value) => {
@@ -20,8 +22,21 @@ function SaveButton({ tournament }: { tournament: Tournament }) {
       startIcon={<Save />}
       variant="contained"
       fullWidth
-      style={{ marginTop: "auto" }}
+      style={{ marginTop: "4px" }}
       disabled={disabled}
+      onClick={() => {
+        if (disabled) return;
+        console.log(JSON.stringify(tournament));
+        fetch(`http://localhost:8080/tournaments`, {
+          method: "POST",
+          body: JSON.stringify(tournament),
+          headers: { "Content-Type": "application/json" },
+        }).then((res) => {
+          router.push(
+            `/dashboard/tournament/list?actionType=created&name=${tournament.name}`,
+          );
+        });
+      }}
     >
       Speichern
     </Button>

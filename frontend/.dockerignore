@@ -1,5 +1,5 @@
-Dockerfile
-.dockerignore
-node_modules
-.next
-.gitignore
+/Dockerfile
+/node_modules
+/.next
+/.gitignore
+/*.http

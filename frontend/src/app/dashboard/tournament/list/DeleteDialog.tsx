@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Dialog,
@@ -7,16 +7,19 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
 export default function DeleteDialog({
   open,
   close,
-  deleteTournament,
+  onDelete,
 }: {
   open: boolean;
   close: () => void;
-  deleteTournament: () => void;
+  onDelete: () => Promise<void>;
 }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <React.Fragment>
       <Dialog open={open} onClose={close}>
@@ -27,17 +30,33 @@ export default function DeleteDialog({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={close} autoFocus>
+          <Button onClick={close} autoFocus disabled={isLoading}>
             Nein
           </Button>
-          <Button
+          <LoadingButton
+            loading={isLoading}
             onClick={() => {
-              close();
-              deleteTournament();
+              setIsLoading(true);
+              onDelete().then(() => {
+                close();
+                setIsLoading(false);
+              });
+
+              /*setIsLoading(true);
+              fetch(`http://localhost:8080/tournaments/${tournamentId}`, {
+                method: "DELETE",
+              })
+                .then((res) => {
+                  close();
+                  setIsLoading(false);
+                })
+                .catch((err) => {
+                  setIsLoading(false);
+                });*/
             }}
           >
             Ja
-          </Button>
+          </LoadingButton>
         </DialogActions>
       </Dialog>
     </React.Fragment>

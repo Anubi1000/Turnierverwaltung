@@ -2,6 +2,8 @@
 import { createTheme } from "@mui/material/styles";
 import { Roboto } from "next/font/google";
 
+// Source: #34a431
+
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
@@ -17,7 +19,7 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#34a431",
+      main: "#35a431",
     },
   },
   components: {
